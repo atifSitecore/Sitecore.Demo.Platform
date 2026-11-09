@@ -1,0 +1,21 @@
+﻿---
+ID: "e0f1a2b3-c4d5-6e7f-9a8b-9c0d1e2f3404"
+Parent: "b7c8d9e0-f1a2-4b3c-8d4e-5f6a7b8c9d01"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/Feature/Demo Shared/XA/Event Count Down/Event End Date
+SharedFields:
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: Datetime
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 300
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "d4e5f6a7-b8c9-4012-d345-e678f9012345"
+

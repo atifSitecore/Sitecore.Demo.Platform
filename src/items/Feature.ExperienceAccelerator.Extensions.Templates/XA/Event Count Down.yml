@@ -1,0 +1,18 @@
+﻿---
+ID: "b7c8d9e0-f1a2-4b3c-8d4e-5f6a7b8c9d01"
+Parent: "cfa06348-6fcf-47a2-a675-27eaf9e470cf"
+Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
+Path: /sitecore/templates/Feature/Demo Shared/XA/Event Count Down
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: Office/32x32/hourglass.png
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "a1b2c3d4-e5f6-4789-a012-b345c678d901"
+

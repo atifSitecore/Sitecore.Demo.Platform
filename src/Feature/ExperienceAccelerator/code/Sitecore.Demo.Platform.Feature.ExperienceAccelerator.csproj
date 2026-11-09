@@ -94,12 +94,16 @@
   <ItemGroup>
     <Content Include="Views\Link\Link.cshtml" />
     <Content Include="Views\ExpandableSearchbox\ExpandableSearchbox.cshtml" />
+    <Content Include="Views\EventCountDown\EventCountDown.cshtml" />
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ExpandableSearchboxController.cs" />
+    <Compile Include="Controllers\EventCountDownController.cs" />
     <Compile Include="Models\ExpandableSearchboxModel.cs" />
+    <Compile Include="Models\EventCountDownModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Templates.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">
