@@ -39,7 +39,8 @@ namespace Sitecore.Demo.Platform.Feature.ExperienceAccelerator.Controllers
 				}
 			}
 
-			model.UnpublishAfterEvent = dataSourceItem.Fields[Templates.EventCountDown.Fields.UnpublishAfterEvent]?.Checked ?? false;
+			var unpublishField = dataSourceItem.Fields[Templates.EventCountDown.Fields.UnpublishAfterEvent];
+			model.UnpublishAfterEvent = unpublishField != null && Sitecore.MainUtil.GetBool(unpublishField.Value, false);
 			return model;
 		}
 
