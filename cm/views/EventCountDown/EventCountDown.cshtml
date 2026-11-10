@@ -25,6 +25,8 @@
 {
     <div class="component event-countdown" data-event-countdown="true" data-event-end-date="@(Model.EventEndDateUtc.HasValue ? Model.EventEndDateUtc.Value.ToString("o", CultureInfo.InvariantCulture) : string.Empty)" data-unpublish-after-event="@Model.UnpublishAfterEvent.ToString().ToLowerInvariant()">
         <div class="component-content">
+
+            <h1>COUNT DOWN TIMER IS SHOWN</h1>
             <h2 class="event-countdown__title">
                 @Html.Sitecore().Field(Templates.EventCountDown.Fields.EventTitle.ToString(), Model.DataSourceItem)
             </h2>
