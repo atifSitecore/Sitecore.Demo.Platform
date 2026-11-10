@@ -96,6 +96,7 @@
     <Content Include="Views\ExpandableSearchbox\ExpandableSearchbox.cshtml" />
     <Content Include="Views\EventCountDown\EventCountDown.cshtml" />
     <Content Include="Scripts\EventCountDown.js" />
+    <Content Include="Scripts\SetDocumentDirection.js" />
     <Content Include="Styles\EventCountDown.css" />
     <None Include="Web.config" />
   </ItemGroup>

@@ -1,8 +1,17 @@
+.event-countdown {
+	text-align: center;
+}
+
 .event-countdown__timer {
-	display: flex;
+	display: none;
 	flex-wrap: wrap;
+	justify-content: center;
 	gap: 1rem;
 	margin-block-start: 1rem;
+}
+
+.event-countdown__timer.is-visible {
+	display: flex;
 }
 
 .event-countdown__unit {

@@ -31,7 +31,7 @@
             <div class="event-countdown__description">
                 @Html.Sitecore().Field(Templates.EventCountDown.Fields.EventDescription.ToString(), Model.DataSourceItem)
             </div>
-            <div class="event-countdown__timer" aria-live="polite" data-event-countdown-timer="true">
+			<div class="event-countdown__timer" style="display: none;" aria-live="polite" data-event-countdown-timer="true">
                 <div class="event-countdown__unit">
                     <span class="event-countdown__value" data-event-countdown-days="true">0</span>
                     <span class="event-countdown__label">Days</span>
