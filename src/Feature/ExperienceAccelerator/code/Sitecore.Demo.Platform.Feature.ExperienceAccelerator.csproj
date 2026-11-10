@@ -92,6 +92,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\EventCountDown.previous.js" />
     <Content Include="Views\Link\Link.cshtml" />
     <Content Include="Views\ExpandableSearchbox\ExpandableSearchbox.cshtml" />
     <Content Include="Views\EventCountDown\EventCountDown.cshtml" />

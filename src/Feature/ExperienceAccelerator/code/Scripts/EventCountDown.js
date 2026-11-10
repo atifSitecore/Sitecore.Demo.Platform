@@ -10,7 +10,19 @@
 		timer.style.display = isVisible ? 'flex' : 'none';
 	}
 
+	function removeCountdown(countdown, timer, unpublishAfterEvent) {
+		if (unpublishAfterEvent) {
+			countdown.remove();
+		} else if (timer) {
+			timer.remove();
+		}
+	}
+
 	function initialize(countdown) {
+		if (countdown.getAttribute('data-event-countdown-initialized') === 'true') {
+			return;
+		}
+
 		countdown.setAttribute('data-event-countdown-initialized', 'true');
 
 		var timer = countdown.querySelector('[data-event-countdown-timer="true"]');
@@ -18,6 +30,7 @@
 		var unpublishAfterEvent = countdown.getAttribute('data-unpublish-after-event') === 'true';
 
 		if (!timer || isNaN(endDate)) {
+			removeCountdown(countdown, timer, unpublishAfterEvent);
 			return;
 		}
 
@@ -27,11 +40,7 @@
 
 			if (remaining <= 0) {
 				window.clearInterval(intervalId);
-				if (unpublishAfterEvent) {
-					countdown.style.display = 'none';
-				} else {
-					setTimerVisibility(timer, false);
-				}
+				removeCountdown(countdown, timer, unpublishAfterEvent);
 				return;
 			}
 
