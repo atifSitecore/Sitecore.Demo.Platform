@@ -1,0 +1,21 @@
+.event-countdown__timer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-block-start: 1rem;
+}
+
+.event-countdown__unit {
+	min-width: 4rem;
+	text-align: center;
+}
+
+.event-countdown__value,
+.event-countdown__label {
+	display: block;
+}
+
+.event-countdown__value {
+	font-size: 2rem;
+	font-weight: bold;
+}

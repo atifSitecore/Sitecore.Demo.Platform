@@ -1,0 +1,120 @@
+@using System.Globalization
+@using Sitecore.Demo.Platform.Feature.ExperienceAccelerator
+@using Sitecore.Mvc
+@model Sitecore.Demo.Platform.Feature.ExperienceAccelerator.Models.EventCountDownModel
+
+@{
+    var isExperienceEditor = Sitecore.Context.PageMode.IsExperienceEditorEditing || Sitecore.Context.PageMode.IsExperienceEditor;
+    var hasExpired = Model.EventEndDateUtc.HasValue && Model.EventEndDateUtc.Value <= System.DateTime.UtcNow;
+}
+
+@if (Model.DataSourceItem != null && (!hasExpired || !Model.UnpublishAfterEvent || isExperienceEditor))
+{
+    <div class="component event-countdown" data-event-countdown="true" data-event-end-date="@(Model.EventEndDateUtc.HasValue ? Model.EventEndDateUtc.Value.ToString("o", CultureInfo.InvariantCulture) : string.Empty)" data-unpublish-after-event="@Model.UnpublishAfterEvent.ToString().ToLowerInvariant()">
+        <div class="component-content">
+            <h2 class="event-countdown__title">
+                @Html.Sitecore().Field(Templates.EventCountDown.Fields.EventTitle.ToString(), Model.DataSourceItem)
+            </h2>
+            <div class="event-countdown__description">
+                @Html.Sitecore().Field(Templates.EventCountDown.Fields.EventDescription.ToString(), Model.DataSourceItem)
+            </div>
+            <div class="event-countdown__timer" aria-live="polite" data-event-countdown-timer="true">
+                <div class="event-countdown__unit">
+                    <span class="event-countdown__value" data-event-countdown-days="true">0</span>
+                    <span class="event-countdown__label">Days</span>
+                </div>
+                <div class="event-countdown__unit">
+                    <span class="event-countdown__value" data-event-countdown-hours="true">0</span>
+                    <span class="event-countdown__label">Hours</span>
+                </div>
+                <div class="event-countdown__unit">
+                    <span class="event-countdown__value" data-event-countdown-minutes="true">0</span>
+                    <span class="event-countdown__label">Minutes</span>
+                </div>
+                <div class="event-countdown__unit">
+                    <span class="event-countdown__value" data-event-countdown-seconds="true">0</span>
+                    <span class="event-countdown__label">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    .event-countdown__timer {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .event-countdown__unit {
+        min-width: 4rem;
+        text-align: center;
+    }
+
+    .event-countdown__value,
+    .event-countdown__label {
+        display: block;
+    }
+
+    .event-countdown__value {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+</style>
+
+<script>
+    (function () {
+        var countdowns = document.querySelectorAll('[data-event-countdown="true"]');
+
+        function setValue(countdown, attribute, value) {
+            var element = countdown.querySelector('[' + attribute + '="true"]');
+            if (element) {
+                element.textContent = value;
+            }
+        }
+
+        for (var index = 0; index < countdowns.length; index++) {
+            (function (countdown) {
+                var timer = countdown.querySelector('[data-event-countdown-timer="true"]');
+                var endDate = Date.parse(countdown.getAttribute('data-event-end-date'));
+                var unpublishAfterEvent = countdown.getAttribute('data-unpublish-after-event') === 'true';
+
+                if (!timer || isNaN(endDate)) {
+                    if (timer) {
+                        timer.style.display = 'none';
+                    }
+                    return;
+                }
+
+                var update = function () {
+                    var remaining = endDate - new Date().getTime();
+
+                    if (remaining <= 0) {
+                        window.clearInterval(intervalId);
+                        if (unpublishAfterEvent) {
+                            countdown.style.display = 'none';
+                        } else {
+                            timer.style.display = 'none';
+                        }
+                        return;
+                    }
+
+                    var totalSeconds = Math.floor(remaining / 1000);
+                    var days = Math.floor(totalSeconds / 86400);
+                    var hours = Math.floor((totalSeconds % 86400) / 3600);
+                    var minutes = Math.floor((totalSeconds % 3600) / 60);
+                    var seconds = totalSeconds % 60;
+
+                    setValue(countdown, 'data-event-countdown-days', days);
+                    setValue(countdown, 'data-event-countdown-hours', ('0' + hours).slice(-2));
+                    setValue(countdown, 'data-event-countdown-minutes', ('0' + minutes).slice(-2));
+                    setValue(countdown, 'data-event-countdown-seconds', ('0' + seconds).slice(-2));
+                };
+
+                update();
+                var intervalId = window.setInterval(update, 1000);
+            }(countdowns[index]));
+        }
+    }());
+</script>
